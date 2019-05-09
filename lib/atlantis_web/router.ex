@@ -1,6 +1,8 @@
 defmodule AtlantisWeb.Router do
   use AtlantisWeb, :router
 
+  alias Atlantis.Guardian
+
   pipeline :browser do
     plug :accepts, ["html"]
     plug :fetch_session
@@ -13,6 +15,10 @@ defmodule AtlantisWeb.Router do
     plug :accepts, ["json"]
   end
 
+  pipeline :jwt_authenticated do
+    plug Guardian.AuthPipeline
+  end
+
   scope "/", AtlantisWeb do
     pipe_through :browser
 
@@ -23,6 +29,13 @@ defmodule AtlantisWeb.Router do
   # Other scopes may use custom stacks.
   scope "/api", AtlantisWeb do
     pipe_through :api
-    resources "/users", UserController, only: [:create, :show]
+
+    post "/sign_up", UserController, :create
+    post "/sign_in", UserController, :sign_in
+    scope "/secure" do
+      pipe_through :jwt_authenticated
+      resources "/users", UserController, only: [:show]
+    end
+    
   end
 end
