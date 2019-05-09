@@ -32,10 +32,15 @@ defmodule AtlantisWeb.Router do
 
     post "/sign_up", UserController, :create
     post "/sign_in", UserController, :sign_in
+
     scope "/secure" do
       pipe_through :jwt_authenticated
       resources "/users", UserController, only: [:show]
+      resources "/users", UserController, only: [:create, :show]
+      resources "/marines", MarineController, only: [:create, :show]
+      resources "/boats", BoatController, only: [:create, :show]
+      resources "/sailors", SailorController, only: [:create, :show]
+      resources "/schedules", ScheduleController, only: [:create, :show]
     end
-    
   end
 end
