@@ -24,5 +24,9 @@ defmodule AtlantisWeb.Router do
   scope "/api", AtlantisWeb do
     pipe_through :api
     resources "/users", UserController, only: [:create, :show]
+    resources "/marines", MarineController, only: [:create, :show]
+    resources "/boats", BoatController, only: [:create, :show]
+    resources "/sailors", SailorController, only: [:create, :show]
+    resources "/schedules", ScheduleController, only: [:create, :show]
   end
 end
