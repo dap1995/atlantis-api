@@ -5,6 +5,8 @@ defmodule Atlantis.Business.Boat do
   schema "boats" do
     field :name, :string
 
+    belongs_to :schedule, Atlantis.Business.Schedule
+    
     timestamps()
   end
 

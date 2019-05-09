@@ -10,6 +10,10 @@ defmodule Atlantis.Business.Schedule do
     field :sailor_id, :integer
     field :schedule_date, :utc_datetime
 
+    has_one :boat, Atlantis.Business.Boat
+    has_one :marine, Atlantis.Business.Marine
+    has_one :sailor, Atlantis.Business.Sailor
+    
     timestamps()
   end
 

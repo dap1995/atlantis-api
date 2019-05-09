@@ -3,12 +3,12 @@ defmodule Atlantis.Repo.Migrations.CreateSchedules do
 
   def change do
     create table(:schedules) do
-      add :boat_id, :integer
-      add :marine_id, :integer
+      add :boat_id, references(:boats)
+      add :marine_id, references(:marines)
       add :schedule_date, :utc_datetime
       add :observation, :string
       add :email, :string
-      add :sailor_id, :integer
+      add :sailor_id, references(:sailors)
 
       timestamps()
     end
