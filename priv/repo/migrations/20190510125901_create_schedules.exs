@@ -3,16 +3,15 @@ defmodule Atlantis.Repo.Migrations.CreateSchedules do
 
   def change do
     create table(:schedules) do
-      add :boat_id, references(:boats)
-      add :marine_id, references(:marines)
+      add :email, :string
       add :schedule_date, :utc_datetime
       add :observation, :string
-      add :email, :string
-      add :sailor_id, references(:sailors)
+      add :owner_id, references(:users, on_delete: :nothing)
 
       timestamps()
     end
 
     create unique_index(:schedules, [:email])
+    create index(:schedules, [:owner_id])
   end
 end

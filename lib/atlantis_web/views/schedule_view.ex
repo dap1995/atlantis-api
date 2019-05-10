@@ -12,11 +12,8 @@ defmodule AtlantisWeb.ScheduleView do
 
   def render("schedule.json", %{schedule: schedule}) do
     %{id: schedule.id,
-      boat_id: schedule.boat_id,
-      marine_id: schedule.marine_id,
-      schedule_date: schedule.schedule_date,
-      observation: schedule.observation,
       email: schedule.email,
-      sailor_id: schedule.sailor_id}
+      schedule_date: schedule.schedule_date,
+      observation: schedule.observation}
   end
 end

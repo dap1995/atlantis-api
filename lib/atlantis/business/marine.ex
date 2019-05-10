@@ -5,6 +5,7 @@ defmodule Atlantis.Business.Marine do
   schema "marines" do
     field :name, :string
 
+    belongs_to :owner, Atlantis.Accounts.User
     belongs_to :schedule, Atlantis.Business.Schedule
     timestamps()
   end

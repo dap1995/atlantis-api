@@ -7,6 +7,11 @@ defmodule Atlantis.Accounts.User do
     field :password_hash, :string
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
+
+    has_many :boats, Atlantis.Business.Boat
+    has_many :marines, Atlantis.Business.Marine
+    has_many :sailors, Atlantis.Business.Sailor
+    has_many :schedules, Atlantis.Business.Schedule
     timestamps()
   end
 

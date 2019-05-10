@@ -5,22 +5,16 @@ defmodule AtlantisWeb.ScheduleControllerTest do
   alias Atlantis.Business.Schedule
 
   @create_attrs %{
-    boat_id: 42,
     email: "some email",
-    marine_id: 42,
     observation: "some observation",
-    sailor_id: 42,
     schedule_date: "2010-04-17T14:00:00Z"
   }
   @update_attrs %{
-    boat_id: 43,
     email: "some updated email",
-    marine_id: 43,
     observation: "some updated observation",
-    sailor_id: 43,
     schedule_date: "2011-05-18T15:01:01Z"
   }
-  @invalid_attrs %{boat_id: nil, email: nil, marine_id: nil, observation: nil, sailor_id: nil, schedule_date: nil}
+  @invalid_attrs %{email: nil, observation: nil, schedule_date: nil}
 
   def fixture(:schedule) do
     {:ok, schedule} = Business.create_schedule(@create_attrs)
@@ -47,11 +41,8 @@ defmodule AtlantisWeb.ScheduleControllerTest do
 
       assert %{
                "id" => id,
-               "boat_id" => 42,
                "email" => "some email",
-               "marine_id" => 42,
                "observation" => "some observation",
-               "sailor_id" => 42,
                "schedule_date" => "2010-04-17T14:00:00Z"
              } = json_response(conn, 200)["data"]
     end
@@ -73,11 +64,8 @@ defmodule AtlantisWeb.ScheduleControllerTest do
 
       assert %{
                "id" => id,
-               "boat_id" => 43,
                "email" => "some updated email",
-               "marine_id" => 43,
                "observation" => "some updated observation",
-               "sailor_id" => 43,
                "schedule_date" => "2011-05-18T15:01:01Z"
              } = json_response(conn, 200)["data"]
     end
