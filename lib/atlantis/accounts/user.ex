@@ -8,10 +8,10 @@ defmodule Atlantis.Accounts.User do
     field :password, :string, virtual: true
     field :password_confirmation, :string, virtual: true
 
-    has_many :boats, Atlantis.Business.Boat
-    has_many :marines, Atlantis.Business.Marine
-    has_many :sailors, Atlantis.Business.Sailor
-    has_many :schedules, Atlantis.Business.Schedule
+    has_many :boats, Atlantis.Business.Boat, foreign_key: :owner_id
+    has_many :marines, Atlantis.Business.Marine, foreign_key: :owner_id
+    has_many :sailors, Atlantis.Business.Sailor, foreign_key: :owner_id
+    has_many :schedules, Atlantis.Business.Schedule, foreign_key: :owner_id
     timestamps()
   end
 

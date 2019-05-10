@@ -14,12 +14,17 @@ defmodule AtlantisWeb.ConnCase do
   """
 
   use ExUnit.CaseTemplate
+  use Phoenix.ConnTest
 
+  import Atlantis.Factory
   using do
     quote do
       # Import conveniences for testing with connections
       use Phoenix.ConnTest
       alias AtlantisWeb.Router.Helpers, as: Routes
+      import Ecto
+      import Ecto.Changeset
+      import Ecto.Query
 
       # The default endpoint for testing
       @endpoint AtlantisWeb.Endpoint

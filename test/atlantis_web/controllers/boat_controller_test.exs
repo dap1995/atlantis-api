@@ -1,6 +1,5 @@
 defmodule AtlantisWeb.BoatControllerTest do
   use AtlantisWeb.ConnCase
-
   alias Atlantis.Business
   alias Atlantis.Business.Boat
 
@@ -18,9 +17,11 @@ defmodule AtlantisWeb.BoatControllerTest do
   end
 
   setup %{conn: conn} do
+    conn = Atlantis.Helpers.sign_in(conn)
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
   end
 
+  @tag :logged_in
   describe "index" do
     test "lists all boats", %{conn: conn} do
       conn = get(conn, Routes.boat_path(conn, :index))
@@ -36,9 +37,9 @@ defmodule AtlantisWeb.BoatControllerTest do
       conn = get(conn, Routes.boat_path(conn, :show, id))
 
       assert %{
-               "id" => id,
-               "name" => "some name"
-             } = json_response(conn, 200)["data"]
+        "id" => id,
+        "name" => "some name"
+      } = json_response(conn, 200)["data"]
     end
 
     test "renders errors when data is invalid", %{conn: conn} do
@@ -57,9 +58,9 @@ defmodule AtlantisWeb.BoatControllerTest do
       conn = get(conn, Routes.boat_path(conn, :show, id))
 
       assert %{
-               "id" => id,
-               "name" => "some updated name"
-             } = json_response(conn, 200)["data"]
+        "id" => id,
+        "name" => "some updated name"
+      } = json_response(conn, 200)["data"]
     end
 
     test "renders errors when data is invalid", %{conn: conn, boat: boat} do

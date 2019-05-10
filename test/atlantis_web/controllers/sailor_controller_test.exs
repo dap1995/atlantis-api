@@ -18,6 +18,7 @@ defmodule AtlantisWeb.SailorControllerTest do
   end
 
   setup %{conn: conn} do
+    conn = Atlantis.Helpers.sign_in(conn)
     {:ok, conn: put_req_header(conn, "accept", "application/json")}
   end
 

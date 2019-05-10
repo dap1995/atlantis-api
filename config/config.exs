@@ -28,6 +28,7 @@ config :phoenix, :json_library, Jason
 # Guardian config
 config :atlantis, Atlantis.Guardian,
   issuer: "atlantis",
+  ttl: { 3, :days},
   secret_key: "ycdxPBzzwGsZvTfpAvMJCGwgx1Xwsc80GZLNUo6ydBuLZCUPaBzD9YxjpM1YGfCD"
 
 # Import environment specific config. This must remain at the bottom
