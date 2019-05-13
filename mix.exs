@@ -46,7 +46,8 @@ defmodule Atlantis.MixProject do
       {:comeonin, "~> 4.0"},
       {:bcrypt_elixir, "~> 1.0"},
       {:guardian, "~> 1.0"},
-      {:ex_machina, "~> 2.3", only: :test}
+      {:ex_machina, "~> 2.3", only: :test},
+      {:cors_plug, "~> 2.0"}
     ]
   end
 

@@ -33,6 +33,12 @@ config :atlantis, Atlantis.Guardian,
   secret_key: System.get_env("SECRET_KEY_BASE") ||
     "ycdxPBzzwGsZvTfpAvMJCGwgx1Xwsc80GZLNUo6ydBuLZCUPaBzD9YxjpM1YGfCD"
 
+config :cors_plug,
+  origin: [
+    "http://localhost:3000",
+    "https://localhost:3000"
+  ]
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{Mix.env()}.exs"

@@ -42,5 +42,7 @@ defmodule AtlantisWeb.Endpoint do
     key: "_atlantis_key",
     signing_salt: "lPJlFLSc"
 
+  plug CORSPlug
+
   plug AtlantisWeb.Router
 end
