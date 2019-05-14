@@ -36,7 +36,8 @@ config :atlantis, Atlantis.Guardian,
 config :cors_plug,
   origin: [
     "http://localhost:3000",
-    "https://localhost:3000"
+    "https://localhost:3000",
+    "https://atlantis-app.netlify.com"
   ]
 
 # Import environment specific config. This must remain at the bottom
