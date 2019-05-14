@@ -16,7 +16,19 @@ defmodule AtlantisWeb.ScheduleView do
       email: schedule.email,
       start_date: schedule.start_date,
       observation: schedule.observation,
-      owner_id: schedule.owner_id
+      owner_id: schedule.owner_id,
+      marine: %{
+        id: schedule.marine.id,
+        name: schedule.marine.name
+      },
+      boat: %{
+        id: schedule.boat.id,
+        name: schedule.boat.name
+      },
+      sailor: %{
+        id: schedule.sailor.id,
+        name: schedule.sailor.name
+      },
     }
   end
 end

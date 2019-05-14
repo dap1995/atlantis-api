@@ -322,7 +322,11 @@ defmodule Atlantis.Business do
   end
 
   def list_schedules(owner_id) do
-    Repo.all(from s in Schedule, where: s.owner_id == ^owner_id)
+    Repo.all(
+      from s in Schedule,
+      where: s.owner_id == ^owner_id,
+      preload: [:marine, :boat, :sailor]
+    )
   end
 
   @doc """
@@ -340,6 +344,8 @@ defmodule Atlantis.Business do
 
   """
   def get_schedule!(id), do: Repo.get!(Schedule, id)
+
+  def get_schedule_with_preload!(id), do: Repo.get!(Schedule, id, preload: [:marine, :boat, :sailor])
 
   @doc """
   Creates a schedule.

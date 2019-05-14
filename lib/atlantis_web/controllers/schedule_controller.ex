@@ -9,7 +9,6 @@ defmodule AtlantisWeb.ScheduleController do
   def index(conn, _params) do
     owner = Guardian.Plug.current_resource(conn)
     schedules = Business.list_schedules(owner.id)
-    IO.inspect schedules
     render(conn, "index.json", schedules: schedules)
   end
 
@@ -25,7 +24,7 @@ defmodule AtlantisWeb.ScheduleController do
   end
 
   def show(conn, %{"id" => id}) do
-    schedule = Business.get_schedule!(id)
+    schedule = Business.get_schedule_with_preload!(id)
     render(conn, "show.json", schedule: schedule)
   end
 

@@ -40,6 +40,7 @@ sailor = %Sailor{
 %Schedule{
   email: "teste@email.com",
   start_date: start_date,
+  observation: "Não verificar o convés.",
   owner: user,
   marine: marine,
   boat: boat,
