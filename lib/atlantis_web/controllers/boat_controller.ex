@@ -7,12 +7,15 @@ defmodule AtlantisWeb.BoatController do
   action_fallback AtlantisWeb.FallbackController
 
   def index(conn, _params) do
-    boats = Business.list_boats()
+    owner = Guardian.Plug.current_resource(conn)
+    boats = Business.list_boats(owner.id)
     render(conn, "index.json", boats: boats)
   end
 
   def create(conn, %{"boat" => boat_params}) do
-    with {:ok, %Boat{} = boat} <- Business.create_boat(boat_params) do
+    owner = Guardian.Plug.current_resource(conn)
+    boat_params_with_owner = Map.put(boat_params, "owner_id", owner.id)
+    with {:ok, %Boat{} = boat} <- Business.create_boat(boat_params_with_owner) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.boat_path(conn, :show, boat))

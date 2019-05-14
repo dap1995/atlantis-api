@@ -21,6 +21,10 @@ defmodule Atlantis.Business do
     Repo.all(Marine)
   end
 
+  def list_marines(owner_id) do
+    Repo.all(from m in Marine, where: m.owner_id == ^owner_id)
+  end
+
   @doc """
   Gets a single marine.
 
@@ -115,6 +119,10 @@ defmodule Atlantis.Business do
   """
   def list_boats do
     Repo.all(Boat)
+  end
+
+  def list_boats(owner_id) do
+    Repo.all(from b in Boat, where: b.owner_id == ^owner_id)
   end
 
   @doc """
@@ -213,6 +221,10 @@ defmodule Atlantis.Business do
     Repo.all(Sailor)
   end
 
+  def list_sailors(owner_id) do
+    Repo.all(from s in Sailor, where: s.owner_id == ^owner_id)
+  end
+
   @doc """
   Gets a single sailor.
 
@@ -307,6 +319,10 @@ defmodule Atlantis.Business do
   """
   def list_schedules do
     Repo.all(Schedule)
+  end
+
+  def list_schedules(owner_id) do
+    Repo.all(from s in Schedule, where: s.owner_id == ^owner_id)
   end
 
   @doc """

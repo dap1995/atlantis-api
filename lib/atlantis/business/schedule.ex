@@ -18,7 +18,7 @@ defmodule Atlantis.Business.Schedule do
   @doc false
   def changeset(schedule, attrs) do
     schedule
-    |> cast(attrs, [:email, :schedule_date, :observation])
+    |> cast(attrs, [:email, :schedule_date, :observation, :owner_id])
     |> validate_required([:email, :schedule_date, :observation])
     |> unique_constraint(:email)
   end

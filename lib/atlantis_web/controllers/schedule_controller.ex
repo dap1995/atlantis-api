@@ -7,12 +7,15 @@ defmodule AtlantisWeb.ScheduleController do
   action_fallback AtlantisWeb.FallbackController
 
   def index(conn, _params) do
-    schedules = Business.list_schedules()
+    owner = Guardian.Plug.current_resource(conn)
+    schedules = Business.list_schedules(owner.id)
     render(conn, "index.json", schedules: schedules)
   end
 
   def create(conn, %{"schedule" => schedule_params}) do
-    with {:ok, %Schedule{} = schedule} <- Business.create_schedule(schedule_params) do
+    owner = Guardian.Plug.current_resource(conn)
+    schedule_params_with_owner = Map.put(schedule_params, "owner_id", owner.id)
+    with {:ok, %Schedule{} = schedule} <- Business.create_schedule(schedule_params_with_owner) do
       conn
       |> put_status(:created)
       |> put_resp_header("location", Routes.schedule_path(conn, :show, schedule))

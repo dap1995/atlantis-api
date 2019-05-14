@@ -11,7 +11,10 @@ defmodule AtlantisWeb.SailorView do
   end
 
   def render("sailor.json", %{sailor: sailor}) do
-    %{id: sailor.id,
-      name: sailor.name}
+    %{
+      id: sailor.id,
+      name: sailor.name,
+      owner_id: sailor.owner_id
+    }
   end
 end

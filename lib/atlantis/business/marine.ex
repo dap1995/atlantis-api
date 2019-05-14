@@ -13,7 +13,7 @@ defmodule Atlantis.Business.Marine do
   @doc false
   def changeset(marine, attrs) do
     marine
-    |> cast(attrs, [:name])
+    |> cast(attrs, [:name, :owner_id])
     |> validate_required([:name])
   end
 end

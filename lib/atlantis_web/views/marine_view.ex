@@ -11,7 +11,10 @@ defmodule AtlantisWeb.MarineView do
   end
 
   def render("marine.json", %{marine: marine}) do
-    %{id: marine.id,
-      name: marine.name}
+    %{
+      id: marine.id,
+      name: marine.name,
+      owner_id: marine.owner_id
+    }
   end
 end
