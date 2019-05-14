@@ -41,6 +41,8 @@ defmodule Atlantis.Business do
   """
   def get_marine!(id), do: Repo.get!(Marine, id)
 
+  def get_marine(id), do: Repo.get(Marine, id)
+
   @doc """
   Creates a marine.
 
@@ -141,6 +143,8 @@ defmodule Atlantis.Business do
   """
   def get_boat!(id), do: Repo.get!(Boat, id)
 
+  def get_boat(id), do: Repo.get(Boat, id)
+
   @doc """
   Creates a boat.
 
@@ -240,6 +244,8 @@ defmodule Atlantis.Business do
 
   """
   def get_sailor!(id), do: Repo.get!(Sailor, id)
+
+  def get_sailor(id), do: Repo.get(Sailor, id)
 
   @doc """
   Creates a sailor.

@@ -17,7 +17,7 @@ defmodule Atlantis.Business.Schedule do
   @doc false
   def changeset(schedule, attrs) do
     schedule
-    |> cast(attrs, [:email, :start_date, :observation])
+    |> cast(attrs, [:email, :start_date, :observation, :owner_id, :marine_id, :boat_id])
     |> validate_required([:email, :start_date, :observation])
   end
 end

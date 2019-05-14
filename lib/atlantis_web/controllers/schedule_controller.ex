@@ -2,6 +2,10 @@ defmodule AtlantisWeb.ScheduleController do
   use AtlantisWeb, :controller
 
   alias Atlantis.Business
+  alias Atlantis.Business.User
+  alias Atlantis.Business.Marine
+  alias Atlantis.Business.Boat
+  alias Atlantis.Business.Sailor
   alias Atlantis.Business.Schedule
 
   action_fallback AtlantisWeb.FallbackController
@@ -13,13 +17,18 @@ defmodule AtlantisWeb.ScheduleController do
   end
 
   def create(conn, %{"schedule" => schedule_params}) do
-    owner = Guardian.Plug.current_resource(conn)
-    schedule_params_with_owner = Map.put(schedule_params, "owner_id", owner.id)
-    with {:ok, %Schedule{} = schedule} <- Business.create_schedule(schedule_params_with_owner) do
-      conn
-      |> put_status(:created)
-      |> put_resp_header("location", Routes.schedule_path(conn, :show, schedule))
-      |> render("show.json", schedule: schedule)
+    with %{id: id} = owner <- Guardian.Plug.current_resource(conn),
+        %Marine{owner_id: id} = marine <- Business.get_marine(schedule_params["marine_id"]),
+        %Boat{owner_id: id} = boat <- Business.get_boat(schedule_params["boat_id"])
+        # %Sailor{owner_id: id} = sailor <- Business.get_sailor(schedule_params["sailor_id"])
+    do
+      schedule_params_with_owner = Map.put(schedule_params, "owner_id", owner.id)
+      with {:ok, %Schedule{} = schedule} <- Business.create_schedule(schedule_params_with_owner) do
+        conn
+        |> put_status(:created)
+        |> put_resp_header("location", Routes.schedule_path(conn, :show, schedule))
+        |> render("show.json", schedule: schedule)
+      end
     end
   end
 
