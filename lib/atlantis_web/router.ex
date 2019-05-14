@@ -34,7 +34,7 @@ defmodule AtlantisWeb.Router do
 
     scope "/secure" do
       pipe_through :jwt_authenticated
-      resources "/users", UserController, only: [:show]
+      get "/user", UserController, :show
       resources "/marines", MarineController
       resources "/boats", BoatController
       resources "/sailors", SailorController
